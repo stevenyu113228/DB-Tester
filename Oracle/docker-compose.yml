@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  webserver:
+    image: adrianharabula/php7-with-oci8
+    volumes:
+      - ./webroot:/var/www/html
+      - ./conf.d:/usr/local/etc/php/conf.d
+    ports: 
+      - 8787:80
+    links:
+      - 'oracledb:oracle'
+    depends_on:
+      - oracledb
+  oracledb:
+    image: konnecteam/docker-oracle-12c:sequelize
+    # ports:
+    #   - 8088:1521
+    #   - 8089:8080
