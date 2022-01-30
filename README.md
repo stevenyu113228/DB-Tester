@@ -4,7 +4,8 @@ A dockerize tool to test multiple database command
 
 - Implement now
     - Oracle Database
+    - MySQL Database
 - Todo
-    - [ ] MySQL
     - [ ] PostgreSQL
     - [ ] SQLite
+    - [ ] MSSQL

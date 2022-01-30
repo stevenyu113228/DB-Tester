@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  webserver:
+    build: .
+    volumes:
+      - ./webroot:/var/www/html
+    ports: 
+      - 8788:80
+    links:
+      - 'mysqldb:mysql'
+    depends_on:
+      - mysqldb
+  mysqldb:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    restart: always
+  

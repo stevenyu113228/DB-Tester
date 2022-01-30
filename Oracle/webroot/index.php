@@ -76,10 +76,10 @@ PRIMARY KEY(id))`;}
         echo "<a>Previous Query: <strong style='color:#60C5F1'>" . $_GET['query'] . "</strong></a>\n";
         echo "<br><br>\n";
         oci_execute($stid);
-        echo "Previous Result:";
-        echo "<table class='table table-bordered table-dark table-hover'>\n";
 
         if(preg_match("/^select/i",$_GET['query'])){
+            echo "Previous Result:";
+            echo "<table class='table table-bordered table-dark table-hover'>\n";    
             while ($row = oci_fetch_array($stid, OCI_ASSOC + OCI_RETURN_NULLS)) {
                 echo "<tr>\n";
                 foreach ($row as $item) {
