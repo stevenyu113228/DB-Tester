@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  webserver:
+    build: .
+    volumes:
+      - ./webroot:/var/www/html
+      - ./php:/usr/local/etc/php 
+    ports: 
+      - 8790:80
+    links:
+      - 'mssqldb:mssql'
+    depends_on:
+      - mssqldb
+  mssqldb:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - 1433:1433
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: P@ssw0rd
+    restart: always
+  
