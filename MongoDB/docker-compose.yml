@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  webserver:
+    build: .
+    volumes:
+      - ./webroot:/var/www/html
+    ports: 
+      - 8791:80
+    links:
+      - 'mongodb:mongo'
+    depends_on:
+      - mongodb
+  mongodb:
+    image: mongo
+    volumes :
+      - ./monogo-init/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: meowdb
